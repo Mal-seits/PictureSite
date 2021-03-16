@@ -1,0 +1,57 @@
+﻿@model ViewImageViewModel
+
+@if (Model.EnteredPassword != true)
+{
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="row">
+                <div class="col-md-6 offset-md-3 jumbotron">
+                    <form action="/home/viewImage">
+                        <h6>PLEASE ENTER THE PASSWORD TO VIEW THIS PICTURE</h6>
+                        <input type="hidden" value="@Model.imageId" name="imageId" />
+                        <input type="text" class="form-control" name="password" placeholder="Password" />
+                        <input type="hidden" name="enteredPassword" value="true" />
+
+                        <button class="btn btn-outline-info">SUBMIT</button>
+                    </form>
+
+
+                </div>
+            </div>
+        </main>
+    </div>
+}
+else if (!Model.CorrectPassword)
+{
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="row">
+                <div class="col-md-6 offset-md-3 jumbotron">
+                    <form action="/home/viewImage">
+                        <h6>WRONG PASSWORD PLEASE TRY AGAIN!</h6>
+                        <input type="hidden" value="@Model.imageId" name="imageId" />
+                        <input type="text" class="form-control" name="password" placeholder="Password" />
+                        <input type="hidden" name="enteredPassword" value="true" />
+
+                        <button class="btn btn-outline-info">SUBMIT</button>
+                    </form>
+
+                </div>
+            </div>
+        </main>
+    </div>
+}
+else if (Model.CorrectPassword)
+{
+  
+
+    <div class="col-md-8 offset-md-2">
+       
+            <div class="mb-4">
+                <img src="@Model.Image.Name" />
+                <h3>@Model.Image.Views</h3>
+            </div>
+        
+
+    </div>
+}
